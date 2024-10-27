@@ -10,7 +10,6 @@ internal sealed class AppDbContext(DbContextOptions options) : DbContext(options
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new ProductConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         
         base.OnModelCreating(modelBuilder);

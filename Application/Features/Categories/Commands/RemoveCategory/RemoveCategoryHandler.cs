@@ -13,7 +13,6 @@ internal sealed class RemoveCategoryHandler(IDbContext context) : IRequestHandle
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = true,
-            IncludeProducts = true
         }, cancellationToken);
         
         context.Categories.Remove(category);

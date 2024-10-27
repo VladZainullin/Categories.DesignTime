@@ -14,20 +14,12 @@ internal sealed class GetCategoryHandler(IDbContext context) :
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = false,
-            IncludeProducts = true
         }, cancellationToken);
 
         return new GetCategoryResponseDto
         {
             Id = category.Id,
-            Title = category.Title,
-            Products = category.Products.Select(static p => new GetCategoryResponseDto.ProductDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Cost = p.Cost,
-                Quantity = p.Quantity
-            })
+            Title = category.Title
         };
     }
 }

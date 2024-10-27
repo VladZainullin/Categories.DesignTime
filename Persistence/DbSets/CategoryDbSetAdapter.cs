@@ -22,11 +22,6 @@ internal sealed class CategoryDbSetAdapter(AppDbContext context) :
             queryable.AsNoTracking();
         }
 
-        if (data.IncludeProducts)
-        {
-            queryable.Include(static c => c.Products);
-        }
-
         return queryable
             .Where(c => c.Id == data.CategoryId)
             .SingleAsync(cancellationToken);

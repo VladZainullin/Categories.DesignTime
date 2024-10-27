@@ -17,7 +17,6 @@ internal sealed class UpdateCategoryLogoHandler(IDbContext context, IMinioClient
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = false,
-            IncludeProducts = true
         }, cancellationToken);
         
         category.SetLogoId(new SetCategoryProductLogoIdParameters

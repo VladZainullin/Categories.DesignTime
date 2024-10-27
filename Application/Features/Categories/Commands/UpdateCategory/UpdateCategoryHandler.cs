@@ -15,7 +15,6 @@ internal sealed class UpdateCategoryHandler(IDbContext context, TimeProvider tim
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = true,
-            IncludeProducts = default
         }, cancellationToken);
         
         category.SetTitle(new SetCategoryTitleParameters
