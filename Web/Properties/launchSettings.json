@@ -1,0 +1,35 @@
+﻿{
+  "profiles": {
+    "Development": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7065",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+
+        "Postgres__Host": "localhost",
+        "Postgres__Port": "5432",
+        "Postgres__Username": "postgres",
+        "Postgres__Password": "123456",
+        "Postgres__SearchPath": "categories_design_time",
+        "Postgres__Database": "store",
+
+        "MinioOptions__AccessKey": "store",
+        "MinioOptions__SecretKey": "pSX5Lps2l5HoogAXrX9UYl29WauJ6mLKPOt93HMF",
+        "MinioOptions__Endpoint": "127.0.0.1:9000",
+        "MinioOptions__Ssl": "false",
+
+        "Serilog__Using__0": "Serilog.Sinks.Console",
+        "Serilog__Using__1": "Serilog.Sinks.File",
+        "Serilog__MinimumLevel": "Debug",
+        "Serilog__WriteTo__0__Name": "Console",
+        "Serilog__WriteTo__0__Args__theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
+        "Serilog__WriteTo__1__Name": "File",
+        "Serilog__WriteTo__1__Args__path": "Logs/log-.txt",
+        "Serilog__WriteTo__1__Args__rollingInterval": "Hour",
+        "Serilog__Properties__ApplicationName": "Manufacturer redactor"
+      }
+    }
+  }
+}
