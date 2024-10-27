@@ -1,4 +1,4 @@
-namespace Domain.Categories.Events;
+namespace Domain.Entities.Categories.Events;
 
 public sealed class CategoryTitleSetEvent
 {

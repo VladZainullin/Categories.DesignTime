@@ -1,4 +1,4 @@
-using Domain.Categories.Events;
+using Domain.Entities.Categories.Events;
 using Domain.Entities.Categories.Parameters;
 using Domain.Entities.Products;
 using Domain.Entities.Products.Parameters;
