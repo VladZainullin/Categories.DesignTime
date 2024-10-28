@@ -16,9 +16,9 @@ public sealed class CategoriesController : AppController
     
     [HttpPost]
     public async Task<ActionResult<CreateCategoryResponseDto>> CreateCategoryAsync(
-        [FromForm] CreateCategoryRequestFormDto formDto)
+        [FromBody] CreateCategoryRequestBodyDto bodyDto)
     {
         return Ok(await Sender.Send(
-            new CreateCategoryCommand(formDto), HttpContext.RequestAborted));
+            new CreateCategoryCommand(bodyDto), HttpContext.RequestAborted));
     }
 }
