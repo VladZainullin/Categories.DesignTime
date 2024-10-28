@@ -1,6 +1,6 @@
 using System.Net.Mime;
 using Application.Contracts.Features.Categories.Commands.UpdateCategoryLogo;
-using Application.Contracts.Features.Categories.Queries.GetCategoryLogo;
+using Application.Contracts.Features.Categories.Queries.GetCategoryLogoUploadUrl;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers;
@@ -10,11 +10,11 @@ public sealed class CategoryLogosController : AppController
 {
     [HttpGet]
     public async Task<FileResult> GetCategoryLogoAsync(
-        [FromRoute] GetCategoryLogoRequestRouteDto routeDto)
+        [FromRoute] GetCategoryLogoUploadUrlRequestRouteDto routeDto)
     {
-        var response = await Sender.Send(new GetCategoryLogoQuery(routeDto), HttpContext.RequestAborted);
+        var response = await Sender.Send(new GetCategoryLogoUploadUrlQuery(routeDto), HttpContext.RequestAborted);
         
-        return File(response.Stream, MediaTypeNames.Application.Octet);
+        return File(response.Url, MediaTypeNames.Application.Octet);
     }
 
     [HttpPut]
