@@ -28,7 +28,7 @@
         "Serilog__WriteTo__1__Name": "File",
         "Serilog__WriteTo__1__Args__path": "Logs/log-.txt",
         "Serilog__WriteTo__1__Args__rollingInterval": "Hour",
-        "Serilog__Properties__ApplicationName": "Manufacturer redactor"
+        "Serilog__Properties__ApplicationName": "Store.Categories.DesignTime"
       }
     }
   }
