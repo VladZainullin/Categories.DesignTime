@@ -27,6 +27,20 @@ internal sealed class CategoryDbSetAdapter(AppDbContext context) :
             .SingleOrDefaultAsync(cancellationToken);
     }
 
+    public Task<Category?> GetAsync(GetCategoriesByTitleParameters data, CancellationToken cancellationToken = default)
+    {
+        var queryable = context.Categories.AsQueryable();
+
+        if (data.AsTracking)
+        {
+            queryable = queryable.AsTracking();
+        }
+        
+        return queryable
+            .Where(c => c.Title == data.Title)
+            .SingleOrDefaultAsync(cancellationToken);
+    }
+
     public Task<List<Category>> GetAsync(
         GetCategoriesParameters parameters,
         CancellationToken cancellationToken = default)
