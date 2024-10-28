@@ -10,11 +10,15 @@ internal sealed class GetCategoryHandler(IDbContext context) :
 {
     public async Task<GetCategoryResponseDto> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
     {
-        var category = await context.Categories.GetAsync(new GetCategoryByIdInputData
+        var category = await context.Categories.GetAsync(new GetCategoryByIdParameters
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = false,
         }, cancellationToken);
+        if (ReferenceEquals(category, default))
+        {
+            throw new ArgumentOutOfRangeException(nameof(request.RouteDto.CategoryId), "Category not found");
+        }
 
         return new GetCategoryResponseDto
         {

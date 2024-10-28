@@ -11,11 +11,12 @@ internal sealed class UpdateCategoryHandler(IDbContext context, TimeProvider tim
 {
     public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await context.Categories.GetAsync(new GetCategoryByIdInputData
+        var category = await context.Categories.GetAsync(new GetCategoryByIdParameters
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = true,
         }, cancellationToken);
+        if (ReferenceEquals(category, default)) return;
         
         category.SetTitle(new SetCategoryTitleParameters
         {

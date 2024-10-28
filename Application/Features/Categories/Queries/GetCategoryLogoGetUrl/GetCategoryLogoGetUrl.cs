@@ -13,11 +13,15 @@ internal sealed class GetCategoryLogoGetUrl(
 {
     public async Task<GetCategoryLogoUploadUrlResponseDto> Handle(GetCategoryLogoUploadUrlQuery request, CancellationToken cancellationToken)
     {
-        var category = await context.Categories.GetAsync(new GetCategoryByIdInputData
+        var category = await context.Categories.GetAsync(new GetCategoryByIdParameters
         {
             CategoryId = request.RouteDto.CategoryId,
             AsTracking = false,
         }, cancellationToken);
+        if (ReferenceEquals(category, default))
+        {
+            throw new ArgumentOutOfRangeException(nameof(request.RouteDto.CategoryId), "Category not found");
+        }
 
         var presignedUrl = await minioClient.PresignedGetObjectAsync(new PresignedGetObjectArgs()
             .WithObject(category.LogoId.ToString())

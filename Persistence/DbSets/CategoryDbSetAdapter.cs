@@ -9,7 +9,7 @@ internal sealed class CategoryDbSetAdapter(AppDbContext context) :
     DbSetAdapter<Category>(context),
     ICategoryDbSet
 {
-    public Task<Category> GetAsync(GetCategoryByIdInputData data, CancellationToken cancellationToken = default)
+    public Task<Category?> GetAsync(GetCategoryByIdParameters data, CancellationToken cancellationToken = default)
     {
         var queryable = context.Categories;
 
@@ -24,7 +24,7 @@ internal sealed class CategoryDbSetAdapter(AppDbContext context) :
 
         return queryable
             .Where(c => c.Id == data.CategoryId)
-            .SingleAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
     }
 
     public Task<List<Category>> GetAsync(

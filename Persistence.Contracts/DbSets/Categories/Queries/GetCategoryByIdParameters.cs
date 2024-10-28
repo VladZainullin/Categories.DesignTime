@@ -1,6 +1,6 @@
 namespace Persistence.Contracts.DbSets.Categories.Queries;
 
-public sealed class GetCategoryByIdInputData
+public sealed class GetCategoryByIdParameters
 {
     public required Guid CategoryId { get; init; }
 
