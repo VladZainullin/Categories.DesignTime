@@ -5,21 +5,20 @@ using Minio.DataModel.Args;
 using Persistence.Contracts;
 using Persistence.Contracts.DbSets.Categories.Queries;
 
-namespace Application.Features.Categories.Queries.GetCategoryLogoPresignedUrl;
+namespace Application.Features.Categories.Queries.GetCategoryLogoUploadUrl;
 
-internal sealed class GetCategoryLogoPresignedUrl(
-    IDbContext context,
-    IMinioClient minioClient) : IRequestHandler<GetCategoryLogoUploadUrlQuery, GetCategoryLogoUploadUrlResponseDto>
+internal sealed class GetCategoryLogoUploadUrlHandler(IMinioClient minioClient, IDbContext context) : 
+    IRequestHandler<GetCategoryLogoUploadUrlQuery, GetCategoryLogoUploadUrlResponseDto>
 {
     public async Task<GetCategoryLogoUploadUrlResponseDto> Handle(GetCategoryLogoUploadUrlQuery request, CancellationToken cancellationToken)
     {
         var category = await context.Categories.GetAsync(new GetCategoryByIdInputData
         {
             CategoryId = request.RouteDto.CategoryId,
-            AsTracking = false,
+            AsTracking = false
         }, cancellationToken);
-
-        var presignedUrl = await minioClient.PresignedGetObjectAsync(new PresignedGetObjectArgs()
+        
+        var presignedUrl = await minioClient.PresignedPutObjectAsync(new PresignedPutObjectArgs()
             .WithObject(category.LogoId.ToString())
             .WithBucket("categories")
             .WithExpiry(60 * 60));
